@@ -1,36 +1,31 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { getNews } from "../api";
+import { getTopNews } from "../api";
+
+import newsCard from "./NewsCard";
+import NewsCard from "./NewsCard";
 
 const Body = () => {
-  const newsList = getNews()
-
-  const [newsList, setNewsList] = useState();
+  const [topNews, setTopNews] = useState();
+  
 
   useEffect(() => {
-    async function fetchData() {
-      const { data } = await axios.get(
-        `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`
-      );
-      setNewsList(data);
-    }
-    fetchData();
+    (async () => {
+      setTopNews(await getTopNews());
+    })();
   }, []);
-  console.log(newsList)
+  // console.log(getNewsList("23066922"));
 
-  if(newsList){
+  if (topNews) {
     return (
-        <ul>
-            {newsList.map((news)=>
-                  <li>{news}</li>
-            )}
-          </ul>
-        );
+      <ul>
+        {topNews.data.map((news) => (
+          <NewsCard newsId={news} />
+        ))}
+      </ul>
+    );
+  } else {
+    return "loading....";
   }
-  else{
-      return "loading...."
-  }
-  
 };
 
 export default Body;

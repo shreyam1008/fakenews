@@ -2,13 +2,18 @@ import axios from "axios";
 const apiCall = (call) =>
   `https://hacker-news.firebaseio.com/v0/${call}.json?print=pretty`;
 
-export  const getNews =async () => {
+export const getTopNews = async () => {
   try {
-    const {data} = await axios.get(apiCall('topstories'))
-    // console.log(data)
-    return {data}
+    const { data } = await axios.get(apiCall("topstories"));
+    return { data };
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-    
-}
+};
+
+export const getNewsList = async (newsId) => {
+  const data = await axios.get(
+    `https://hacker-news.firebaseio.com/v0/item/${newsId}.json?print=pretty`
+  );
+  console.log(data);
+};
