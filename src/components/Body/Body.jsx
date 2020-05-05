@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTopNews } from "../api";
 
-import newsCard from "./NewsCard";
 import NewsCard from "./NewsCard";
 
 const Body = () => {
@@ -18,7 +17,7 @@ const Body = () => {
   if (topNews) {
     return (
       <div>
-        {topNews.data.slice(0,20).map((news) => (
+        {topNews.slice(0,10).map((news) => (
           <NewsCard newsId={news} />
         ))}
       </div>

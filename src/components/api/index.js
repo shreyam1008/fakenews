@@ -5,15 +5,15 @@ const apiCall = (call) =>
 export const getTopNews = async () => {
   try {
     const { data } = await axios.get(apiCall("topstories"));
-    return { data };
+    return  data ;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getNewsList = async (newsId) => {
-  const data = await axios.get(
+export const getNews = async (newsId) => {
+  const {data} = await axios.get(
     `https://hacker-news.firebaseio.com/v0/item/${newsId}.json?print=pretty`
   );
-  console.log(data);
+  return data
 };
