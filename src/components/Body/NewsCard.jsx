@@ -1,10 +1,10 @@
 import React from 'react'
 
 
-const NewsCard = (newsId) => {
+const NewsCard = ({newsId}) => {
     return (
         <div>
-            news here
+            {newsId}
         </div>
     )
 }

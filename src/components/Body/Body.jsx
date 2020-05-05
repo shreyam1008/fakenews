@@ -17,11 +17,11 @@ const Body = () => {
 
   if (topNews) {
     return (
-      <ul>
-        {topNews.data.map((news) => (
+      <div>
+        {topNews.data.slice(0,20).map((news) => (
           <NewsCard newsId={news} />
         ))}
-      </ul>
+      </div>
     );
   } else {
     return "loading....";
