@@ -12,14 +12,13 @@ const Body = () => {
       setTopNews(await getTopNews());
     })();
   }, []);
-  // console.log(getNewsList("23066922"));
 
   if (topNews) {
     return (
       <div>
-        {topNews.slice(0,10).map((news) => (
-          <NewsCard newsId={news} />
-        ))}
+        <NewsCard newsList={topNews.slice(0,10)}/>
+
+
       </div>
     );
   } else {

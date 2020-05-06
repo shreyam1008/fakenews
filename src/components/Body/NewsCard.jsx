@@ -1,28 +1,48 @@
-import React, {useEffect, useState} from 'react'
-import {getNews} from '../api'
+import React, { useEffect, useState } from "react";
+import { getNews } from "../api";
 
 
-const NewsCard = ({newsId}) => {
 
-    const [news, setNews] = useState(null)
+const NewsCard = ({ newsList }) => {
+  const [news, setNews] = useState([]);
 
 
-    useEffect(() => {
-        (async () => {
-          setNews(await getNews(newsId));
-        })();
-      }, []);
+
+
+
+useEffect(() => {
+
+  (async () => {
+    const promises = []
+
+    newsList.forEach(
+      newsId => 
+        promises.push(getNews(newsId))
+      )
     
-    if(news){
-    return (
-       
-        <div>
-          {news.title}
-        </div>
-    )}
-    else{
-        return "loading...."
-    }
+    const newsData = await Promise.all(promises)
+    setNews(newsData)
+
+    
+  })()
+
+  }, [])
+
+  
+
+
+  return(
+  <>
+  {news.map((news, i)=>{
+    return(
+      <li key={i}>
+        {news.title}
+      </li>
+    )
+  })}
+  {!!news.length? "wotking": "loading...."}
+  </>
+  )
 }
 
-export default NewsCard
+export default NewsCard;
