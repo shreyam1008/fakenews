@@ -8,7 +8,7 @@ const Body = () => {
   const [topNews, setTopNews] = useState();
   
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(12); 
+  const [postsPerPage] = useState(3); 
 
   
 
