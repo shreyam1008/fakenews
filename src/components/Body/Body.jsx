@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getTopNews } from "../api";
 
 import NewsCard from "./NewsCard";
-import Pagination from './Pagination'
+// import Pagination from './Pagination'
+import Pagination from '@material-ui/lab/Pagination';
 
 const Body = () => {
   const [topNews, setTopNews] = useState();
@@ -24,21 +25,25 @@ const Body = () => {
   const newsList = topNews? topNews.slice(indexOfFirstPost, indexOfLastPost): [] 
 
   //to change page
-  const paginate = pageNumber => setCurrentPage(pageNumber)
+  const handleChange = (event, pageNumber) => setCurrentPage(pageNumber)
 
 
 
 
-  
+  // const handleChange = (event, value) =>{
+
+  // }
 
   return(
     (!!topNews) ? 
     <div>
         <NewsCard newsList={newsList}/>
         <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={topNews.length}
-        paginate={paginate}
+        // postsPerPage={postsPerPage}
+        // totalPosts={topNews.length}
+        // paginate={paginate}
+        count={Math.ceil(topNews.length/postsPerPage)}
+        onChange = {handleChange}
       />
 
       </div>
