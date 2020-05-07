@@ -25,23 +25,14 @@ const Body = () => {
   const newsList = topNews? topNews.slice(indexOfFirstPost, indexOfLastPost): [] 
 
   //to change page
-  const handleChange = (event, pageNumber) => setCurrentPage(pageNumber)
+  const handleChange = (e, pageNumber) => setCurrentPage(pageNumber)
 
-
-
-
-  // const handleChange = (event, value) =>{
-
-  // }
 
   return(
     (!!topNews) ? 
     <div>
         <NewsCard newsList={newsList}/>
         <Pagination
-        // postsPerPage={postsPerPage}
-        // totalPosts={topNews.length}
-        // paginate={paginate}
         count={Math.ceil(topNews.length/postsPerPage)}
         onChange = {handleChange}
       />

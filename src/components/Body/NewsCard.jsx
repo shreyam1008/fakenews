@@ -8,18 +8,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
-const useStyles = makeStyles({
-
-
-
-});
+import Paper from '@material-ui/core/Paper';
 
 const NewsCard = ({ newsList }) => {
   const [news, setNews] = useState([]);
-
-  const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   useEffect(() => {
     (async () => {
@@ -38,19 +30,28 @@ const NewsCard = ({ newsList }) => {
       {!!news.length
         ? news.map((news, i) => {
             return (
-              <Card className={classes.root} variant="outlined">
+              <Paper elevation={4}>
+                <Card variant="outlined">
                 <CardContent>
                   <Typography variant="h5" component="h2">
                     {news.title}
                   </Typography>
-                  <Typography className={classes.pos} color="textSecondary">
+                  <Typography color="textSecondary">
                     BY: {news.by} DATE: {news.time}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">READ NEWS</Button>
+                <Button 
+                variant="outlined" 
+                color="primary" 
+                href={news.url}>
+        Read News
+      </Button>
                 </CardActions>
               </Card>
+
+              </Paper>
+              
             );
           })
         : "loading...."}
