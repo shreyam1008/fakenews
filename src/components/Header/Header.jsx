@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import Tabs from './Tabs'
+import TabBar from './TabBar'
 import Logo from './Logo'
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
         <div>
             <Logo />
 
-            <Tabs />
+            <TabBar />
         </div>
     )
 }
